@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">FriendsApp</string>
     <string name="menu_item_Details">Add</string>
+    <string name="order_by">Order by..</string>
+    <string name="add">Add</string>
+    <string name="view_as">View as</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
+    <string name="distance">Distance</string>
+    <string name="name">Name</string>
 </resources>

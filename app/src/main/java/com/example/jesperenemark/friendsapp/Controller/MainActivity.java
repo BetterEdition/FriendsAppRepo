@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    // Populating main activity with menu
+    // Populating main activity with menu_item
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
+        // Inflate the menu_item; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }
 
@@ -65,14 +64,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_Add) {
+        if (id == R.id.action_add) {
 
             Intent k = new Intent(MainActivity.this, DetailsActivity.class);
             startActivity(k);
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+     return super.onOptionsItemSelected(item);
+
     }
 
 

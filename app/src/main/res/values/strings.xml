@@ -8,4 +8,11 @@
     <string name="map">Map</string>
     <string name="distance">Distance</string>
     <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="birthday">Birthday</string>
+    <string name="web">Web</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
 </resources>

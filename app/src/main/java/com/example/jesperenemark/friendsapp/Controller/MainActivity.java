@@ -75,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    public void onClickInsert() {
-        String name = editText.getText().toString();
-        appProvider.addPerson(new Friend(0,name));
-        editText.setText("");
-        fillList();
-        Toast.makeText( this,"name = " + name, Toast.LENGTH_LONG).show();
-    }
+//
+//    public void onClickInsert() {
+//        String name = editText.getText().toString();
+//        appProvider.addPerson(new Friend(0,name));
+//        editText.setText("");
+//        fillList();
+//        Toast.makeText( this,"name = " + name, Toast.LENGTH_LONG).show();
+//    }
 
     public void fillList() {
         AppProvider appProvider = new AppProvider(this);

@@ -16,7 +16,7 @@
 
                 <item
                     android:id="@+id/name"
-                    android:title="@string/name" />
+                    android:title="@string/firstName" />
                 <item
                     android:id="@+id/distance"
                     android:title="@string/distance" />

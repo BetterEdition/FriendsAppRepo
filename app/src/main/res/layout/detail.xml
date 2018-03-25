@@ -10,21 +10,37 @@
     tools:layout_editor_absoluteY="81dp">
 
     <EditText
-        android:id="@+id/person_name"
+        android:id="@+id/person_firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="70dp"
+        android:layout_weight="1"
         android:ems="10"
-        android:hint="@string/name"
+        android:hint="@string/firstName"
         android:inputType="textPersonName"
-        android:labelFor="@+id/person_name"
+        android:labelFor="@+id/person_firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+    <EditText
+        android:id="@+id/person_lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/lastName"
+        android:inputType="textPersonName"
+        android:labelFor="@+id/person_lastName"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/person_firstName" />
 
     <EditText
         android:id="@+id/person_phone"
@@ -39,8 +55,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_name"
-        tools:text="Phone" />
+        app:layout_constraintTop_toBottomOf="@+id/person_lastName" />
 
     <EditText
         android:id="@+id/person_email"
@@ -56,8 +71,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_phone"
-        tools:text="Email" />
+        app:layout_constraintTop_toBottomOf="@+id/person_phone" />
 
     <EditText
         android:id="@+id/person_address"
@@ -73,8 +87,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_email"
-        tools:text="Address" />
+        app:layout_constraintTop_toBottomOf="@+id/person_email" />
 
     <EditText
         android:id="@+id/person_bday"
@@ -89,8 +102,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_address"
-        tools:text="Birthday" />
+        app:layout_constraintTop_toBottomOf="@+id/person_address" />
 
     <EditText
         android:id="@+id/person_web"
@@ -105,14 +117,15 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_bday"
-        tools:text="Web" />
+        app:layout_constraintTop_toBottomOf="@+id/person_bday" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="62dp">
 
         <Button
             android:id="@+id/back"
@@ -138,6 +151,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

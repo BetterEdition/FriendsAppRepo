@@ -20,7 +20,7 @@ import java.util.List;
 public class AppDatabase extends SQLiteOpenHelper {
     private static final String TAG = "AppDatabase";
     public static final String DATABASE_NAME = "AppFriend.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 7;
 
     // Implement AppDatabase as a Singleton.
     private static AppDatabase instance = null;
@@ -56,7 +56,9 @@ public class AppDatabase extends SQLiteOpenHelper {
         String sSQL; // Use a string variable to facilitate logging
         // sSQL = "CREATE TABLE " + TABLE_NAME + (COLUMN_ID + "INTEGER PRIMARY KEY " + COLUMN_FirstName + "TEXT" );
         sSQL = "CREATE TABLE " + AppProvider.TABLE_NAME + " (" + AppProvider.Columns._ID + " INTEGER PRIMARY KEY," +
-                AppProvider.Columns.PERSON_FirstName + " TEXT" + ")";
+                AppProvider.Columns.PERSON_FirstName + " TEXT, " + AppProvider.Columns.PERSON_LastName + " TEXT, " + AppProvider.Columns.PERSON_Address +
+                " TEXT, " + AppProvider.Columns.PERSON_Phone + " TEXT, "  + AppProvider.Columns.PERSON_Mail +
+                " TEXT" + ")";
         // Log.d(TAG, sSQL);
         db.execSQL(sSQL);
 

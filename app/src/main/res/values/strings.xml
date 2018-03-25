@@ -7,7 +7,8 @@
     <string name="list">List</string>
     <string name="map">Map</string>
     <string name="distance">Distance</string>
-    <string name="name">Name</string>
+    <string name="firstName">FirstName</string>
+    <string name="lastName">LastName</string>
     <string name="address">Address</string>
     <string name="email">Email</string>
     <string name="phone">Phone</string>

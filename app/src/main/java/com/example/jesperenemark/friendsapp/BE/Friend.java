@@ -16,9 +16,13 @@ public class Friend {
     public String Picture;
     public String BirthDate;
 
-    public Friend(int id,String firstName) {
+    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress ) {
         this.Id = id;
         this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Address = address;
+        this.PhoneNumber = phoneNumber;
+        this.MailAddress = mailAddress;
 
     }
 
@@ -52,6 +56,6 @@ public class Friend {
 
 
     public String toString() {
-        return "" + Id + ": " + FirstName;
+        return "" + Id + ": " + FirstName + " " + LastName + " " + Address + " " + PhoneNumber + " " + MailAddress + " " + BirthDate;
     }
 }

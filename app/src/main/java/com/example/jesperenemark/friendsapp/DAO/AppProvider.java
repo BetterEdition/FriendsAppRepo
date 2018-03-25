@@ -27,6 +27,12 @@ public class AppProvider {
     public static class Columns {
         public static final String _ID = "id";
         public static final String PERSON_FirstName = "firstName";
+        public static final String PERSON_LastName = "lastName";
+        public static final String PERSON_Address = "address";
+        public static final String PERSON_Mail = "mail";
+        public static final String PERSON_Phone = "phone";
+
+
 
     }
 
@@ -44,8 +50,16 @@ public class AppProvider {
         SQLiteDatabase db = appDatabase.getWritableDatabase();
         ContentValues cValues = new ContentValues();
         cValues.put(Columns.PERSON_FirstName, friend.FirstName);
-        db.insert("PERSON",null, cValues);
-        db.close();
+        cValues.put(Columns.PERSON_LastName,friend.LastName);
+        cValues.put(Columns.PERSON_Address,friend.Address);
+        cValues.put(Columns.PERSON_Phone,friend.PhoneNumber);
+        cValues.put(Columns.PERSON_Mail,friend.MailAddress);
+
+
+
+         db.insert("PERSON",null, cValues);
+         db.close();
+
     }
 
     public List<Friend> getAll() {
@@ -54,14 +68,18 @@ public class AppProvider {
         // opening database ready for fetching data
         SQLiteDatabase db = appDatabase.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME,
-                new String[]{"id", "firstName"},
+                new String[]{"id", "firstName", "lastName", "address", "mail", "phone"},
                 null, null,
                 null, null, "id");
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
                     list.add(new Friend(cursor.getInt(0),
-                            cursor.getString(1)));
+                            cursor.getString(1),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            cursor.getString(5),
+                            cursor.getString(6)));
                 } while (cursor.moveToNext());
             }
         }

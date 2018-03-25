@@ -1,11 +1,13 @@
 package com.example.jesperenemark.friendsapp.Controller;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.example.jesperenemark.friendsapp.BE.Friend;
 import com.example.jesperenemark.friendsapp.DAO.AppProvider;
@@ -16,17 +18,21 @@ import java.util.ArrayList;
 
 public class DetailsActivity extends AppCompatActivity {
 
+
     Button buttonAdd;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
 
     AppProvider appProvider;
+    Button backbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
         setTitle("PersonDetails");
+
         appProvider = new AppProvider(this);
-        buttonAdd = (Button) findViewById(R.id.save);
+        buttonAdd = (Button) findViewById(R.id.btnSave);
         init();
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +40,9 @@ public class DetailsActivity extends AppCompatActivity {
                 DetailsActivity.this.onClickAdd();
             }
         });
+
+        backbtn = (Button) findViewById(R.id.btnBack);
+        clickBack();
     }
 
     public void init() {
@@ -64,5 +73,24 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
 
+    public void clickBack() {
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+    public void saveFriend() {
+        // To Be Implemented
+    }
+
+
+
 
 }
+
+
+
+
+
+

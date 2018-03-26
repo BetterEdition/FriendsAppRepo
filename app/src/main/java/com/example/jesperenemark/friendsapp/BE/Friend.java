@@ -26,6 +26,7 @@ public class Friend {
 
     }
 
+
     public int getId() { return Id;}
 
     public String getfirstName() { return FirstName; }
@@ -54,6 +55,9 @@ public class Friend {
     public String getBirthDate() { return BirthDate; }
     public void setBirthDate(String birthD) {this.BirthDate = birthD; }
 
+    public String getName() {
+        return FirstName + " "+ LastName;
+    }
 
     public String toString() {
         return "" + Id + ": " + FirstName + " " + LastName + " " + Address + " " + PhoneNumber + " " + MailAddress + " " + BirthDate;

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jesperenemark.friendsapp.BE.Friend;
+import com.example.jesperenemark.friendsapp.CustomAdapter;
 import com.example.jesperenemark.friendsapp.DAO.AppProvider;
 import com.example.jesperenemark.friendsapp.R;
 
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Friend> list;
     ArrayAdapter<Friend> adapter;
 
-
+    ListView simpleList;
+    String friendlist[] = {"Tim"};
+    int fImg[] = {R.mipmap.ic_launcher_round};
 
     // reference to ListView widget
     private ListView listV;
@@ -34,8 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     AppProvider appProvider;
 
-
-    @Override
+    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -44,9 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
         appProvider = new AppProvider(this);
         fillList();
-
-
+}
+    */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        simpleList = (ListView) findViewById(R.id.friend_list);
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(),friendlist , fImg);
+        simpleList.setAdapter(customAdapter);
     }
+
+
+
     // Populating main activity with menu_item
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 //        fillList();
 //        Toast.makeText( this,"name = " + name, Toast.LENGTH_LONG).show();
 //    }
-
+/*
     public void fillList() {
         AppProvider appProvider = new AppProvider(this);
 
@@ -94,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
         listV.setAdapter(a);
     }
 
+*/
 }

@@ -156,17 +156,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/btnSave"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="107dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/save"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            tools:layout_editor_absoluteX="139dp"
-            tools:layout_editor_absoluteY="8dp" />
-
-        <Button
             android:id="@+id/btnBack"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="107dp"
@@ -185,6 +174,17 @@
             android:text="Delete"
             android:textSize="14sp"
             tools:layout_editor_absoluteX="261dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/save"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="8dp" />
     </LinearLayout>
 

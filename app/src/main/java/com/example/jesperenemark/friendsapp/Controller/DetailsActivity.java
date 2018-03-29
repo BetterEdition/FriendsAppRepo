@@ -15,11 +15,14 @@ import com.example.jesperenemark.friendsapp.R;
 
 import java.util.ArrayList;
 
+import javax.xml.transform.Source;
+
 
 public class DetailsActivity extends AppCompatActivity {
 
 
     Button buttonAdd;
+    Button buttonDelete;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
 
     AppProvider appProvider;
@@ -33,7 +36,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         appProvider = new AppProvider(this);
         buttonAdd = (Button) findViewById(R.id.btnSave);
+        buttonDelete = (Button) findViewById(R.id.btnDelete);
         init();
+
+        backbtn = (Button) findViewById(R.id.btnBack);
+        clickBack();
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -41,8 +48,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        backbtn = (Button) findViewById(R.id.btnBack);
-        clickBack();
     }
 
     public void init() {

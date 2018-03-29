@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -21,7 +22,7 @@ import javax.xml.transform.Source;
 public class DetailsActivity extends AppCompatActivity {
 
 
-    Button buttonAdd;
+    Button buttonInsert;
     Button buttonDelete;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
 
@@ -35,14 +36,16 @@ public class DetailsActivity extends AppCompatActivity {
         setTitle("PersonDetails");
 
         appProvider = new AppProvider(this);
-        buttonAdd = (Button) findViewById(R.id.btnSave);
+        buttonInsert = (Button) findViewById(R.id.btnSave);
         buttonDelete = (Button) findViewById(R.id.btnDelete);
         init();
+        displayInfo();
+        delete();
 
         backbtn = (Button) findViewById(R.id.btnBack);
         clickBack();
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DetailsActivity.this.onClickAdd();
             }
@@ -85,12 +88,34 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
     }
-    public void saveFriend() {
-        // To Be Implemented
+
+    public void delete() {
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int index = getIntent().getExtras().getInt("index");
+
+                Friend current = appProvider.getAll().get(index);
+
+                appProvider.deleteById(current.Id);
+                if(index > 0)
+                    Toast.makeText(DetailsActivity.this, "Friend Data Deleted", Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(DetailsActivity.this, "Friend Data not deleted", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
     }
 
+    public void displayInfo() {
+        int index = getIntent().getExtras().getInt("index");
 
+        Friend current = appProvider.getAll().get(index);
 
+        EditText txtName = (EditText) findViewById(R.id.person_firstName);
+
+        txtName.setText(current.FirstName);
+    }
 
 }
 

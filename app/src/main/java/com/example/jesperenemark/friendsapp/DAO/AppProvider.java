@@ -20,7 +20,7 @@ public class AppProvider {
     private static final String TAG = "AppProvider";
 
     // Person Table Name
-    public static final String TABLE_NAME = "PERSON";
+    static final String TABLE_NAME = "PERSON";
 
     AppDatabase appDatabase;
     SQLiteDatabase db;
@@ -38,7 +38,6 @@ public class AppProvider {
 
     public AppProvider(Context context) {
         this.appDatabase = AppDatabase.getInstance(context);
-        appDatabase.getWritableDatabase();
 
     }
 
@@ -85,17 +84,16 @@ public class AppProvider {
         return list;
     }
 
-
-    // Deleting single friend
-    public void deleteFriend(Friend friend) {
+    public void deleteById(int id)
+    {
         SQLiteDatabase db = appDatabase.getWritableDatabase();
-        db.delete(TABLE_NAME, Columns._ID + " = ?",
-                new String[] { String.valueOf(friend.getId()) });
-        db.close();
+        db.delete(TABLE_NAME, "id = " + id, null);
     }
 
     public Friend updatePerson(int id) {
         return null;
     }
+
+
 
 }

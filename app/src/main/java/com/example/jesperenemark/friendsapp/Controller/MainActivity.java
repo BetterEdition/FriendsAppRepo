@@ -60,16 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent x = new Intent();
-                x.setClass(MainActivity.this, DetailsActivity.class);
-                x.putExtra("index", position);
-                startActivity(x);
-            }
-        });
 
 
     // Populating main activity with menu_item
@@ -91,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
 
-            Intent k = new Intent(MainActivity.this, DetailsActivity.class);
-            startActivity(k);
+            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+            startActivity(i);
             return true;
         }
 

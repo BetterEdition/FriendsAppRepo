@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jesperenemark.friendsapp.BE.Friend;
+import com.example.jesperenemark.friendsapp.CustomAdapter;
 import com.example.jesperenemark.friendsapp.DAO.AppProvider;
 import com.example.jesperenemark.friendsapp.R;
 
@@ -25,19 +26,18 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Friend> list;
     ArrayAdapter<Friend> adapter;
 
-
+    ListView simpleList;
+    String friendlist[] = {"Tim"};
+    int fImg[] = {R.mipmap.ic_launcher_round};
 
     // reference to ListView widget
     private ListView listV;
 
     TextView textView;
-    Button insertButton;
-    EditText editText;
 
     AppProvider appProvider;
 
-
-    @Override
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -47,19 +47,25 @@ public class MainActivity extends AppCompatActivity {
         appProvider = new AppProvider(this);
         fillList();
 
-        listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+         listV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                 Intent x = new Intent();
+                 x.setClass(MainActivity.this, DetailsActivity.class);
+                 x.putExtra("index", position);
+                 startActivity(x);
+             }
+         });
+}
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main);
+//        simpleList = (ListView) findViewById(R.id.friend_list);
+//        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(),friendlist , fImg);
+//        simpleList.setAdapter(customAdapter);
+//    }
 
-                Intent x = new Intent();
-                x.setClass(MainActivity.this, DetailsActivity.class);
-                x.putExtra("index", position);
-                startActivity(x);
-            }
-        });
-
-
-    }
     // Populating main activity with menu_item
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
 
-            Intent k = new Intent(MainActivity.this, DetailsActivity.class);
-            startActivity(k);
+            Intent i = new Intent(MainActivity.this, DetailsActivity.class);
+            startActivity(i);
             return true;
         }
 

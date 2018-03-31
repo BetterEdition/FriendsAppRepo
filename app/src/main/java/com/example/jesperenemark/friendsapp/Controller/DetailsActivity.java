@@ -1,23 +1,16 @@
 package com.example.jesperenemark.friendsapp.Controller;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.jesperenemark.friendsapp.BE.Friend;
 import com.example.jesperenemark.friendsapp.DAO.AppProvider;
 import com.example.jesperenemark.friendsapp.R;
-
-import java.util.ArrayList;
-
-import javax.xml.transform.Source;
-
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -39,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
         buttonInsert = (Button) findViewById(R.id.btnSave);
         buttonDelete = (Button) findViewById(R.id.btnDelete);
         init();
-        displayInfo();
+        //displayInfo();
         delete();
 
         backbtn = (Button) findViewById(R.id.btnBack);
@@ -98,24 +91,21 @@ public class DetailsActivity extends AppCompatActivity {
                 Friend current = appProvider.getAll().get(index);
 
                 appProvider.deleteById(current.Id);
-                if(index > 0)
-                    Toast.makeText(DetailsActivity.this, "Friend Data Deleted", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(DetailsActivity.this, "Friend Data not deleted", Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailsActivity.this, "Friend deleted" + current, Toast.LENGTH_LONG).show();
                 finish();
             }
         });
     }
 
-    public void displayInfo() {
-        int index = getIntent().getExtras().getInt("index");
-
-        Friend current = appProvider.getAll().get(index);
-
-        EditText txtName = (EditText) findViewById(R.id.person_firstName);
-
-        txtName.setText(current.FirstName);
-    }
+//    public void displayInfo() {
+//        int index = getIntent().getExtras().getInt("index");
+//
+//        Friend current = appProvider.getAll().get(index);
+//
+//        EditText txtName = (EditText) findViewById(R.id.person_firstName);
+//
+//        txtName.setText(current.FirstName);
+//    }
 
 }
 

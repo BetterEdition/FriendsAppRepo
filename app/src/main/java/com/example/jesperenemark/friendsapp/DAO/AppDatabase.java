@@ -1,5 +1,6 @@
 package com.example.jesperenemark.friendsapp.DAO;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,6 +23,9 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "AppFriend.db";
     public static final int DATABASE_VERSION = 7;
 
+    ContentResolver mContentResolver;
+    SQLiteDatabase db;
+
     // Implement AppDatabase as a Singleton.
     private static AppDatabase instance = null;
 
@@ -32,7 +36,8 @@ public class AppDatabase extends SQLiteOpenHelper {
      */
     private AppDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        Log.d(TAG, "AppDatabase: constructor");
+        mContentResolver = context.getContentResolver();
+        db = this.getWritableDatabase();
     }
 
     /**
@@ -52,17 +57,15 @@ public class AppDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "onCreate: starts");
         String sSQL; // Use a string variable to facilitate logging
-        // sSQL = "CREATE TABLE " + TABLE_NAME + (COLUMN_ID + "INTEGER PRIMARY KEY " + COLUMN_FirstName + "TEXT" );
         sSQL = "CREATE TABLE " + AppProvider.TABLE_NAME + " (" + AppProvider.Columns._ID + " INTEGER PRIMARY KEY," +
                 AppProvider.Columns.PERSON_FirstName + " TEXT, " + AppProvider.Columns.PERSON_LastName + " TEXT, " + AppProvider.Columns.PERSON_Address +
                 " TEXT, " + AppProvider.Columns.PERSON_Phone + " TEXT, "  + AppProvider.Columns.PERSON_Mail +
-                " TEXT" + ")";
+                " TEXT," + AppProvider.Columns.PERSON_Image + " BLOB " + ")";
         // Log.d(TAG, sSQL);
         db.execSQL(sSQL);
 
-        Log.d(TAG, "onCreate: ends");
+        Log.d(TAG, "Database Created Successfully");
     }
 
     @Override

@@ -15,14 +15,16 @@ public class Friend {
     public String Website;
     public String Picture;
     public String BirthDate;
+    public String Image;
 
-    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress ) {
+    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress, String img ) {
         this.Id = id;
         this.FirstName = firstName;
         this.LastName = lastName;
         this.Address = address;
         this.PhoneNumber = phoneNumber;
         this.MailAddress = mailAddress;
+        this.Image = img;
 
     }
 
@@ -58,6 +60,10 @@ public class Friend {
     public String getName() {
         return FirstName + " "+ LastName;
     }
+
+    public String getImage() { return Image; }
+    public void setImage(String image) { this.Image = image; }
+
 
     public String toString() {
         return "" + Id + ": " + FirstName + " " + LastName + " " + Address + " " + PhoneNumber + " " + MailAddress + " " + BirthDate;

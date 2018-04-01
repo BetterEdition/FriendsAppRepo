@@ -33,6 +33,7 @@ public class AppProvider {
         public static final String PERSON_Address = "address";
         public static final String PERSON_Mail = "mail";
         public static final String PERSON_Phone = "phone";
+        public static final String PERSON_Image = "image";
 
     }
 
@@ -51,6 +52,7 @@ public class AppProvider {
         cValues.put(Columns.PERSON_Address,friend.Address);
         cValues.put(Columns.PERSON_Phone,friend.PhoneNumber);
         cValues.put(Columns.PERSON_Mail,friend.MailAddress);
+        cValues.put(Columns.PERSON_Image,friend.Image);
 
          db.insert("PERSON",null, cValues);
          db.close();
@@ -74,7 +76,8 @@ public class AppProvider {
                             cursor.getString(2),
                             cursor.getString(3),
                             cursor.getString(4),
-                            cursor.getString(5)));
+                            cursor.getString(5),
+                            cursor.getString(6)));
                 } while (cursor.moveToNext());
             }
         }

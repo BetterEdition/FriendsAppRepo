@@ -1,10 +1,12 @@
 package com.example.jesperenemark.friendsapp.Controller;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -18,6 +20,7 @@ public class DetailsActivity extends AppCompatActivity {
     Button buttonInsert;
     Button buttonDelete;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
+    ImageView imageV;
 
     AppProvider appProvider;
     Button backbtn;
@@ -53,6 +56,7 @@ public class DetailsActivity extends AppCompatActivity {
         mailText = (EditText) findViewById(R.id.person_email);
         birthDateText = (EditText) findViewById(R.id.person_web);
         phoneText = (EditText) findViewById(R.id.person_phone);
+        imageV = (ImageView) findViewById(R.id.imageView);
     }
 
     public void onClickAdd() {
@@ -63,7 +67,9 @@ public class DetailsActivity extends AppCompatActivity {
         String birthdate = birthDateText.getText().toString();
         String phone = phoneText.getText().toString();
 
-        appProvider.addPerson(new Friend(0, firstname, lastname, address, mail, phone));
+
+
+        appProvider.addPerson(new Friend(0, firstname, lastname, address, mail, phone, null));
         firstNameText.setText("");
         lastNameText.setText("");
         addressText.setText("");

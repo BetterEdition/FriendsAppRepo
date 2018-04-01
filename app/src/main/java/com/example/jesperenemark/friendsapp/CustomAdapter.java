@@ -45,7 +45,7 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.listview_item, null);
-        TextView friend = (TextView)           view.findViewById(R.id.textView);
+        TextView friend = (TextView)           view.findViewById(R.id.name);
         ImageView friendImg = (ImageView) view.findViewById(R.id.icon);
         friend.setText(friendList[i]);
         friendImg.setImageResource(friendIcon[i]);

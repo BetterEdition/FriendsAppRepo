@@ -21,7 +21,7 @@ import java.util.List;
 public class AppDatabase extends SQLiteOpenHelper {
     private static final String TAG = "AppDatabase";
     public static final String DATABASE_NAME = "AppFriend.db";
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
 
     ContentResolver mContentResolver;
     SQLiteDatabase db;

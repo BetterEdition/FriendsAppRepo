@@ -56,7 +56,6 @@ public class DetailsActivity extends AppCompatActivity {
         mailText = (EditText) findViewById(R.id.person_email);
         birthDateText = (EditText) findViewById(R.id.person_web);
         phoneText = (EditText) findViewById(R.id.person_phone);
-        imageV = (ImageView) findViewById(R.id.imageView);
     }
 
     public void onClickAdd() {

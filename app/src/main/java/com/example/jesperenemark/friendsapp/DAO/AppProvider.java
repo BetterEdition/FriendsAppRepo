@@ -1,4 +1,5 @@
 package com.example.jesperenemark.friendsapp.DAO;
+import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -16,7 +17,7 @@ import java.util.List;
  * This is the only class knows about the {@link AppDatabase}
  */
 
-public class AppProvider {
+public class AppProvider  {
     private static final String TAG = "AppProvider";
 
     // Person Table Name
@@ -53,6 +54,7 @@ public class AppProvider {
         cValues.put(Columns.PERSON_Phone,friend.PhoneNumber);
         cValues.put(Columns.PERSON_Mail,friend.MailAddress);
         cValues.put(Columns.PERSON_Image,friend.Image);
+        cValues.put(Columns.PERSON_Image, friend.Image);
 
          db.insert("PERSON",null, cValues);
          db.close();
@@ -65,7 +67,7 @@ public class AppProvider {
         // opening database ready for fetching data
         SQLiteDatabase db = appDatabase.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME,
-                new String[]{"id", "firstName", "lastName", "address", "mail", "phone"},
+                new String[]{"id", "firstName", "lastName", "address", "mail", "phone", "image"},
                 null, null,
                 null, null, "id");
         if (cursor != null) {

@@ -16,4 +16,8 @@
     <string name="web">Web</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
+    <string name="show_on_map">Show On Map</string>
+    <string name="delete">Delete</string>
+    <string name="set_home">Set Home</string>
+    <string name="person_name">Person Name</string>
 </resources>

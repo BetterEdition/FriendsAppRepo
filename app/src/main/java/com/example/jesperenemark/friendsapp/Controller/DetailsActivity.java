@@ -1,5 +1,6 @@
 package com.example.jesperenemark.friendsapp.Controller;
 
+import android.support.v7.app.AppCompatActivity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,13 @@ public class DetailsActivity extends AppCompatActivity {
     // Widgets
     Button buttonAdd;
     Button backbtn;
+
+
+
+    Button buttonInsert;
+    Button buttonDelete;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
+    ImageView imageV;
 
 
     // Database provider
@@ -62,7 +70,14 @@ public class DetailsActivity extends AppCompatActivity {
         appProvider = new AppProvider(this);
         mImage = (ImageView) findViewById(R.id.imageView);
         buttonAdd = (Button) findViewById(R.id.btnSave);
+        buttonInsert = (Button) findViewById(R.id.btnSave);
+        buttonDelete = (Button) findViewById(R.id.btnDelete);
         init();
+        //displayInfo();
+        delete();
+
+        backbtn = (Button) findViewById(R.id.btnBack);
+        clickBack();
 
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,14 +95,12 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DetailsActivity.this.onClickAdd();
             }
         });
 
-        backbtn = (Button) findViewById(R.id.btnBack);
-        clickBack();
     }
     private void onClickTakePics()
     {
@@ -178,14 +191,14 @@ public class DetailsActivity extends AppCompatActivity {
         String birthdate = birthDateText.getText().toString();
         String phone = phoneText.getText().toString();
 
-        appProvider.addPerson(new Friend(0, firstname, lastname, address, mail, phone));
+        appProvider.addPerson(new Friend(0, firstname, lastname, address, mail, phone, Uri.fromFile(mFile).toString()));
         firstNameText.setText("");
         lastNameText.setText("");
         addressText.setText("");
         mailText.setText("");
         phoneText.setText("");
         Toast.makeText(this, "FirstName: " + firstname + "LastName: " + lastname + "Address: " + address + "Mail: " + mail +
-                "Birthday: "  + phone, Toast.LENGTH_LONG).show();
+                "Phone: "  + phone + "PhotoDirectory: " + Uri.fromFile(mFile).toString(), Toast.LENGTH_LONG).show();
     }
 
 
@@ -196,12 +209,31 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
     }
-    public void saveFriend() {
-        // To Be Implemented
+
+    public void delete() {
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int index = getIntent().getExtras().getInt("index");
+
+                Friend current = appProvider.getAll().get(index);
+
+                appProvider.deleteById(current.Id);
+                Toast.makeText(DetailsActivity.this, "Friend deleted" + current, Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
     }
 
-
-
+//    public void displayInfo() {
+//        int index = getIntent().getExtras().getInt("index");
+//
+//        Friend current = appProvider.getAll().get(index);
+//
+//        EditText txtName = (EditText) findViewById(R.id.person_firstName);
+//
+//        txtName.setText(current.FirstName);
+//    }
 
 }
 

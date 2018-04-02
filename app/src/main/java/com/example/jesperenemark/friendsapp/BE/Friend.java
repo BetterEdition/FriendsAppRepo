@@ -15,16 +15,19 @@ public class Friend {
     public String Website;
     public String Picture;
     public String BirthDate;
+    public String Image;
 
-    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress ) {
+    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress, String img ) {
         this.Id = id;
         this.FirstName = firstName;
         this.LastName = lastName;
         this.Address = address;
         this.PhoneNumber = phoneNumber;
         this.MailAddress = mailAddress;
+        this.Image = img;
 
     }
+
 
     public int getId() { return Id;}
 
@@ -53,6 +56,13 @@ public class Friend {
 
     public String getBirthDate() { return BirthDate; }
     public void setBirthDate(String birthD) {this.BirthDate = birthD; }
+
+    public String getName() {
+        return FirstName + " "+ LastName;
+    }
+
+    public String getImage() { return Image; }
+    public void setImage(String image) { this.Image = image; }
 
 
     public String toString() {

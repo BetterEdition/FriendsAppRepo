@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     ArrayList<Friend> list;
-    ArrayAdapter<Friend> adapter;
+    ArrayAdapter<Friend> a;
 
     ListView simpleList;
     String friendlist[] = {"Tim"};
@@ -57,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
              }
          });
 }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fillList();
+
+    }
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
@@ -95,13 +102,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fillList() {
-        AppProvider appProvider = new AppProvider(this);
 
-        ArrayAdapter<Friend> a =
-                new ArrayAdapter<Friend>(this,
+        AppProvider appProvider = new AppProvider(this);
+        a = new ArrayAdapter<Friend>(this,
                         android.R.layout.simple_list_item_1,
                         appProvider.getAll() );
         listV.setAdapter(a);
+
     }
 
 }

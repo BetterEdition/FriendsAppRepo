@@ -2,6 +2,7 @@ package com.example.jesperenemark.friendsapp.Controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
         AppProvider appProvider = new AppProvider(this);
         a = new ArrayAdapter<Friend>(this,
                         android.R.layout.simple_list_item_1,
-                        appProvider.getAll() );
+                        appProvider.getAll());
+        Log.d(TAG, "fillList: " + appProvider.getAll());
         listV.setAdapter(a);
 
     }

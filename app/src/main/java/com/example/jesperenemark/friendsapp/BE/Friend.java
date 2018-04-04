@@ -17,7 +17,7 @@ public class Friend {
     public String BirthDate;
     public String Image;
 
-    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress, String img ) {
+    public Friend(int id,String firstName, String lastName, String address, String phoneNumber, String mailAddress, String img, String location ) {
         this.Id = id;
         this.FirstName = firstName;
         this.LastName = lastName;
@@ -25,6 +25,7 @@ public class Friend {
         this.PhoneNumber = phoneNumber;
         this.MailAddress = mailAddress;
         this.Image = img;
+        this.Location = location;
 
     }
 

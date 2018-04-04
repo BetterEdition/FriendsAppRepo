@@ -21,7 +21,7 @@ import java.util.List;
 public class AppDatabase extends SQLiteOpenHelper {
     private static final String TAG = "AppDatabase";
     public static final String DATABASE_NAME = "AppFriend.db";
-    public static final int DATABASE_VERSION = 9;
+    public static final int DATABASE_VERSION = 12;
 
     ContentResolver mContentResolver;
     SQLiteDatabase db;
@@ -61,7 +61,7 @@ public class AppDatabase extends SQLiteOpenHelper {
         sSQL = "CREATE TABLE " + AppProvider.TABLE_NAME + " (" + AppProvider.Columns._ID + " INTEGER PRIMARY KEY," +
                 AppProvider.Columns.PERSON_FirstName + " TEXT, " + AppProvider.Columns.PERSON_LastName + " TEXT, " + AppProvider.Columns.PERSON_Address +
                 " TEXT, " + AppProvider.Columns.PERSON_Phone + " TEXT, "  + AppProvider.Columns.PERSON_Mail +
-                " TEXT," + AppProvider.Columns.PERSON_Image + " TEXT " + ")";
+                " TEXT," + AppProvider.Columns.PERSON_Image + " TEXT, " + AppProvider.Columns.PERSON_Location + " TEXT " + ")";
         // Log.d(TAG, sSQL);
         db.execSQL(sSQL);
 

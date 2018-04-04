@@ -35,6 +35,7 @@ public class AppProvider  {
         public static final String PERSON_Mail = "mail";
         public static final String PERSON_Phone = "phone";
         public static final String PERSON_Image = "image";
+        public static final String PERSON_Location = "location";
 
     }
 
@@ -66,7 +67,7 @@ public class AppProvider  {
         // opening database ready for fetching data
         SQLiteDatabase db = appDatabase.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME,
-                new String[]{"id", "firstName", "lastName", "address", "mail", "phone", "image"},
+                new String[]{"id", "firstName", "lastName", "address", "mail", "phone", "image", "location"},
                 null, null,
                 null, null, "id");
         if (cursor != null) {
@@ -78,7 +79,8 @@ public class AppProvider  {
                             cursor.getString(3),
                             cursor.getString(4),
                             cursor.getString(5),
-                            cursor.getString(6)));
+                            cursor.getString(6),
+                            cursor.getString(7)));
                 } while (cursor.moveToNext());
             }
         }

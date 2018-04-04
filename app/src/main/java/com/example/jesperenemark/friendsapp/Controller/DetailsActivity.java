@@ -1,5 +1,9 @@
 package com.example.jesperenemark.friendsapp.Controller;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.Manifest;
 import android.app.Activity;
@@ -38,7 +42,15 @@ import java.util.Date;
 public class DetailsActivity extends AppCompatActivity {
 
     // Widgets
-    Button buttonAdd, backbtn,buttonInsert,buttonDelete;
+    Button backbtn;
+    Button openPhone;
+    Button openMail;
+    Button btngetLocation;
+
+    String homeLocation;
+    Button buttonInsert;
+    Button buttonDelete;
+
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
 
     // Database provider
@@ -48,6 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
    private final static String LOGTAG = "Camera01";
    private final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 200;
+   private static final int MY_PERMISSIONS_REQUEST__ACCESS_FINE_LOCATION = 200;
     File mFile;
     ImageView mImage;
 
@@ -61,13 +74,18 @@ public class DetailsActivity extends AppCompatActivity {
 
         appProvider = new AppProvider(this);
         mImage = (ImageView) findViewById(R.id.imageView);
-        buttonAdd = (Button) findViewById(R.id.btnSave);
+        //buttonAdd = (Button) findViewById(R.id.btnSave);
         buttonInsert = (Button) findViewById(R.id.btnSave);
         buttonDelete = (Button) findViewById(R.id.btnDelete);
+        openPhone = (Button) findViewById(R.id.btnOpenPhone);
+        openMail = (Button) findViewById(R.id.btnOpenMail);
+        btngetLocation = (Button) findViewById(R.id.btnSetHome);
         init();
         displayInfo();
         delete();
-
+        OpenPhoneView();
+        OpenMailView();
+        SetHome();
         backbtn = (Button) findViewById(R.id.btnBack);
         clickBack();
 
@@ -94,6 +112,29 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
     }
+
+    private void SetHome() {
+        btngetLocation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                LocationManager locationManager = (LocationManager)
+                        getSystemService(Context.LOCATION_SERVICE);
+                if (ContextCompat.checkSelfPermission(DetailsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(DetailsActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            MY_PERMISSIONS_REQUEST__ACCESS_FINE_LOCATION);
+                }
+                else {
+                    Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    String latitude = String.valueOf(location.getLatitude());
+                    String longtitude = String.valueOf(location.getLongitude());
+                    homeLocation = latitude + ", " + longtitude;
+                    Log.d("DetailActivity", "Friend's location: " + homeLocation);
+                }
+            }
+        });
+    }
+
     private void onClickTakePics()
     {
         mFile = getOutputMediaFile();
@@ -183,7 +224,7 @@ public class DetailsActivity extends AppCompatActivity {
         String birthdate = birthDateText.getText().toString();
         String phone = phoneText.getText().toString();
 
-        appProvider.addPerson(new Friend(0, firstname, lastname, address, mail, phone, Uri.fromFile(mFile).toString()));
+        appProvider.addPerson(new Friend(0,firstname, lastname, address, mail, phone, Uri.fromFile(mFile).toString(),homeLocation));
         firstNameText.setText("");
         lastNameText.setText("");
         addressText.setText("");
@@ -193,6 +234,22 @@ public class DetailsActivity extends AppCompatActivity {
                 "Phone: "  + phone + "PhotoDirectory: " + Uri.fromFile(mFile).toString(), Toast.LENGTH_LONG).show();
     }
 
+    public void OpenPhoneView() {
+        openPhone.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_DIAL, null);
+                startActivity(i);
+            }
+        });
+    }
+    public void OpenMailView() {
+        openMail.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
+                startActivity(intent);
+            }
+            });
+    }
 
     public void clickBack() {
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -216,6 +273,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void displayInfo() {
         if(!getIntent().hasExtra("index")){

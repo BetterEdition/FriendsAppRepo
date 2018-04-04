@@ -119,16 +119,17 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_bday" />
+        app:layout_constraintTop_toBottomOf="@+id/person_bday"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnShowOnMap"
         android:layout_width="83dp"
         android:layout_height="55dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:text="@string/show_on_map"
@@ -143,7 +144,7 @@
         android:layout_width="85dp"
         android:layout_height="53dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_weight="1"
         android:text="@string/set_home"
         app:layout_constraintBottom_toTopOf="@+id/person_phone"
@@ -203,6 +204,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        app:srcCompat="@color/cardview_dark_background" />
+        app:srcCompat="@color/cardview_dark_background" android:contentDescription="@string/todo" />
 
 </android.support.constraint.ConstraintLayout>

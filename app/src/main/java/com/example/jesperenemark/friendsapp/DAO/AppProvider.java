@@ -94,6 +94,20 @@ public class AppProvider  {
         db.delete(TABLE_NAME, "id = " + id, null);
     }
 
+    /**
+     *  Getting the person ID using their firstName and LastName
+     */
+    public Cursor getItemId(String firstName, String lastName) {
+        SQLiteDatabase db = appDatabase.getWritableDatabase();
+        String query = "SELECT" + Columns._ID + " FROM " + TABLE_NAME +
+                "WHERE" + Columns.PERSON_FirstName + " = '"+ firstName + " '" +
+                Columns.PERSON_LastName + " = '"+ lastName + " '";
+        Cursor data = db.rawQuery(query,null);
+        return data;
+    }
+
+
+
     public Friend updatePerson(int id) {
         return null;
     }

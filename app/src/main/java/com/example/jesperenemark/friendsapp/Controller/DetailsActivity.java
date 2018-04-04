@@ -38,16 +38,8 @@ import java.util.Date;
 public class DetailsActivity extends AppCompatActivity {
 
     // Widgets
-    Button buttonAdd;
-    Button backbtn;
-
-
-
-    Button buttonInsert;
-    Button buttonDelete;
+    Button buttonAdd, backbtn,buttonInsert,buttonDelete;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
-    ImageView imageV;
-
 
     // Database provider
     AppProvider appProvider;
@@ -73,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
         buttonInsert = (Button) findViewById(R.id.btnSave);
         buttonDelete = (Button) findViewById(R.id.btnDelete);
         init();
-        //displayInfo();
+        displayInfo();
         delete();
 
         backbtn = (Button) findViewById(R.id.btnBack);
@@ -225,15 +217,23 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-//    public void displayInfo() {
-//        int index = getIntent().getExtras().getInt("index");
-//
-//        Friend current = appProvider.getAll().get(index);
-//
-//        EditText txtName = (EditText) findViewById(R.id.person_firstName);
-//
-//        txtName.setText(current.FirstName);
-//    }
+    public void displayInfo() {
+        if(!getIntent().hasExtra("index")){
+
+        }
+        else {
+            int index = getIntent().getExtras().getInt("index");
+            Friend current = appProvider.getAll().get(index);
+            firstNameText.setText(current.FirstName);
+            lastNameText.setText(current.LastName);
+            phoneText.setText(current.PhoneNumber);
+            addressText.setText(current.Address);
+            mailText.setText(current.MailAddress);
+        }
+
+
+
+    }
 
 }
 

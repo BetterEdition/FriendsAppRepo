@@ -119,21 +119,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnShowOnMap"
-        android:layout_width="83dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:text="@string/show_on_map"
-        app:layout_constraintBottom_toTopOf="@+id/btnSetHome"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/person_firstName"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.925" />
-
-    <Button
         android:id="@+id/btnSetHome"
         android:layout_width="85dp"
         android:layout_height="53dp"

@@ -2,11 +2,9 @@ package com.example.jesperenemark.friendsapp.Controller;
 
 import android.content.Context;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -16,8 +14,6 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -25,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.net.Uri;
 
@@ -35,7 +30,6 @@ import com.example.jesperenemark.friendsapp.R;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -72,16 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
 
-        appProvider = new AppProvider(this);
-        mImage = (ImageView) findViewById(R.id.imageView);
-        //buttonAdd = (Button) findViewById(R.id.btnSave);
-        buttonAdd = (Button) findViewById(R.id.btnAdd);
-        btnupdate = (Button) findViewById(R.id.btnUpdate);
-        buttonDelete = (Button) findViewById(R.id.btnDelete);
-        openPhone = (Button) findViewById(R.id.btnOpenPhone);
-        openMail = (Button) findViewById(R.id.btnOpenMail);
-        btngetLocation = (Button) findViewById(R.id.btnSetHome);
-        OpenMessage = (Button) findViewById(R.id.btnMessage);
+
         init();
         displayInfo();
         delete();
@@ -140,6 +125,7 @@ public class DetailsActivity extends AppCompatActivity {
                     String longtitude = String.valueOf(location.getLongitude());
                     homeLocation = latitude + ", " + longtitude;
                     Log.d("DetailActivity", "Friend's location: " + homeLocation);
+                    Toast.makeText(DetailsActivity.this, "Friend's home is: " + homeLocation, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -218,6 +204,15 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void init() {
+        appProvider = new AppProvider(this);
+        mImage = (ImageView) findViewById(R.id.imageView);
+        buttonAdd = (Button) findViewById(R.id.btnAdd);
+        btnupdate = (Button) findViewById(R.id.btnUpdate);
+        buttonDelete = (Button) findViewById(R.id.btnDelete);
+        openPhone = (Button) findViewById(R.id.btnOpenPhone);
+        openMail = (Button) findViewById(R.id.btnOpenMail);
+        btngetLocation = (Button) findViewById(R.id.btnSetHome);
+        OpenMessage = (Button) findViewById(R.id.btnMessage);
         firstNameText = (EditText) findViewById(R.id.person_firstName);
         lastNameText = (EditText) findViewById(R.id.person_lastName);
         addressText = (EditText) findViewById(R.id.person_address);
@@ -233,15 +228,22 @@ public class DetailsActivity extends AppCompatActivity {
         String mail = mailText.getText().toString();
         String birthdate = birthDateText.getText().toString();
         String phone = phoneText.getText().toString();
-
-        appProvider.addPerson(new Friend(0,firstname, lastname, address, mail, phone, Uri.fromFile(mFile).toString(),homeLocation));
+        String picture;
+        if(mFile != null) {
+            picture = Uri.fromFile(mFile).toString();
+        }
+        else {
+            picture = "";
+        }
+        appProvider.addPerson(new Friend(0,firstname, lastname, address, mail, phone, picture,homeLocation));
         firstNameText.setText("");
         lastNameText.setText("");
         addressText.setText("");
         mailText.setText("");
         phoneText.setText("");
-        Toast.makeText(this, "FirstName: " + firstname + "LastName: " + lastname + "Address: " + address + "Mail: " + mail +
-                "Phone: "  + phone + "PhotoDirectory: " + Uri.fromFile(mFile).toString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(DetailsActivity.this, "Has been added succesfully!", Toast.LENGTH_LONG).show();
+        finish();
+
     }
 
     public void onClickEdit() {
@@ -255,6 +257,8 @@ public class DetailsActivity extends AppCompatActivity {
         String birthdate = birthDateText.getText().toString();
         String phone = phoneText.getText().toString();
         appProvider.updateFriendById(current.Id, firstname, lastname, address, phone, mail, homeLocation);
+        Toast.makeText(DetailsActivity.this, "Has been updated succesfully!", Toast.LENGTH_LONG).show();
+        finish();
     }
     public void OpenPhoneView() {
         openPhone.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +279,8 @@ public class DetailsActivity extends AppCompatActivity {
     public void OpenMessageView() {
             OpenMessage.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_SEND, null);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setType("vnd.android-dir/mms-sms");
                     startActivity(intent);
                 }
             });
@@ -298,7 +303,7 @@ public class DetailsActivity extends AppCompatActivity {
                 Friend current = appProvider.getAll().get(index);
 
                 appProvider.deleteById(current.Id);
-                Toast.makeText(DetailsActivity.this, "Friend deleted" + current, Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailsActivity.this, "Has been deleted successfully", Toast.LENGTH_LONG).show();
                 finish();
             }
         });

@@ -55,9 +55,22 @@ public class AppProvider  {
         cValues.put(Columns.PERSON_Phone,friend.PhoneNumber);
         cValues.put(Columns.PERSON_Mail,friend.MailAddress);
         cValues.put(Columns.PERSON_Image,friend.Image);
-
+        cValues.put(Columns.PERSON_Location,friend.Location);
          db.insert("PERSON",null, cValues);
          db.close();
+
+    }
+    public void updateFriendById(int id, String FirstName, String LastName, String Address, String PhoneNumber, String MailAddress, String Location) {
+        SQLiteDatabase db = appDatabase.getWritableDatabase();
+        ContentValues cValues = new ContentValues();
+        cValues.put(Columns.PERSON_FirstName, FirstName);
+        cValues.put(Columns.PERSON_LastName, LastName);
+        cValues.put(Columns.PERSON_Address, Address);
+        cValues.put(Columns.PERSON_Phone, PhoneNumber);
+        cValues.put(Columns.PERSON_Mail, MailAddress);
+        cValues.put(Columns.PERSON_Location, Location);
+            db.update("PERSON", cValues, Columns._ID + "=" + id,null);
+            db.close();
 
     }
 
@@ -90,6 +103,7 @@ public class AppProvider  {
         return list;
     }
 
+
     public void deleteById(int id)
     {
         SQLiteDatabase db = appDatabase.getWritableDatabase();
@@ -110,9 +124,6 @@ public class AppProvider  {
 
 
 
-    public Friend updatePerson(int id) {
-        return null;
-    }
 
 
 

@@ -46,11 +46,11 @@ public class DetailsActivity extends AppCompatActivity {
     Button openPhone;
     Button openMail;
     Button btngetLocation;
-
+    Button btnupdate;
     String homeLocation;
-    Button buttonInsert;
+    Button buttonAdd;
     Button buttonDelete;
-
+    Button OpenMessage;
     EditText firstNameText,lastNameText, addressText, mailText, birthDateText, phoneText;
 
     // Database provider
@@ -75,16 +75,19 @@ public class DetailsActivity extends AppCompatActivity {
         appProvider = new AppProvider(this);
         mImage = (ImageView) findViewById(R.id.imageView);
         //buttonAdd = (Button) findViewById(R.id.btnSave);
-        buttonInsert = (Button) findViewById(R.id.btnSave);
+        buttonAdd = (Button) findViewById(R.id.btnAdd);
+        btnupdate = (Button) findViewById(R.id.btnUpdate);
         buttonDelete = (Button) findViewById(R.id.btnDelete);
         openPhone = (Button) findViewById(R.id.btnOpenPhone);
         openMail = (Button) findViewById(R.id.btnOpenMail);
         btngetLocation = (Button) findViewById(R.id.btnSetHome);
+        OpenMessage = (Button) findViewById(R.id.btnMessage);
         init();
         displayInfo();
         delete();
         OpenPhoneView();
         OpenMailView();
+        OpenMessageView();
         SetHome();
         backbtn = (Button) findViewById(R.id.btnBack);
         clickBack();
@@ -105,11 +108,18 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 DetailsActivity.this.onClickAdd();
             }
         });
+        btnupdate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DetailsActivity.this.onClickEdit();
+            }
+        });
+
+
 
     }
 
@@ -234,6 +244,18 @@ public class DetailsActivity extends AppCompatActivity {
                 "Phone: "  + phone + "PhotoDirectory: " + Uri.fromFile(mFile).toString(), Toast.LENGTH_LONG).show();
     }
 
+    public void onClickEdit() {
+        int index = getIntent().getExtras().getInt("index");
+
+        Friend current = appProvider.getAll().get(index);
+        String firstname = firstNameText.getText().toString();
+        String lastname = lastNameText.getText().toString();
+        String address = addressText.getText().toString();
+        String mail = mailText.getText().toString();
+        String birthdate = birthDateText.getText().toString();
+        String phone = phoneText.getText().toString();
+        appProvider.updateFriendById(current.Id, firstname, lastname, address, phone, mail, homeLocation);
+    }
     public void OpenPhoneView() {
         openPhone.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -248,6 +270,14 @@ public class DetailsActivity extends AppCompatActivity {
                 Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
                 startActivity(intent);
             }
+            });
+    }
+    public void OpenMessageView() {
+            OpenMessage.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_SEND, null);
+                    startActivity(intent);
+                }
             });
     }
 
@@ -287,6 +317,7 @@ public class DetailsActivity extends AppCompatActivity {
             phoneText.setText(current.PhoneNumber);
             addressText.setText(current.Address);
             mailText.setText(current.MailAddress);
+            homeLocation = current.Location;
         }
 
 

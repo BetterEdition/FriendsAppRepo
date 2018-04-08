@@ -86,7 +86,7 @@
     <EditText
         android:id="@+id/person_bday"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -148,7 +148,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="62dp"
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -158,7 +158,7 @@
         <Button
             android:id="@+id/btnBack"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="107dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
@@ -168,7 +168,7 @@
 
         <Button
             android:id="@+id/btnDelete"
-            android:layout_width="107dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/delete"
@@ -177,15 +177,22 @@
             tools:layout_editor_absoluteY="8dp" />
 
         <Button
-            android:id="@+id/btnSave"
+            android:id="@+id/btnAdd"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="107dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/save"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
             tools:layout_editor_absoluteX="139dp"
             tools:layout_editor_absoluteY="8dp" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Update" />
     </LinearLayout>
 
     <ImageView
@@ -224,5 +231,20 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toEndOf="@+id/person_email"
         app:layout_constraintTop_toBottomOf="@+id/btnOpenPhone" />
+
+    <Button
+        android:id="@+id/btnMessage"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="SMS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toEndOf="@+id/person_address"
+        app:layout_constraintTop_toBottomOf="@+id/btnOpenMail"
+        app:layout_constraintVertical_bias="0.084" />
 
 </android.support.constraint.ConstraintLayout>
